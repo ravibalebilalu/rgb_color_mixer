@@ -1,5 +1,73 @@
+
+
+
+.container{
+   display: flex;
+   justify-content: space-around;
+}
+.input-form{
+   display: flex;
+   flex-direction: column;
+    justify-content: center;
+     gap: 30px;
+}
+
 .text-display{
-    display: flex;
+     display: flex;
      flex-direction: column;
      
 }
+input {
+     width: 500px;
+     margin-left: 20px;
+  }
+
+  .display{
+    height: 500px;
+    width: 500px;
+    border: 5px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .range-labels{
+      display: flex;
+      flex-direction: column ;
+       justify-content: start;
+     writing-mode: vertical-lr;
+     
+     
+  }
+
+  .text-display{
+     justify-content: center;
+      
+  }
+
+  
+  .range-labels p{
+     margin-right:27px  ;
+     font-size: 16px;
+     
+  }
+
+  .text-display p{
+   color: white;
+   background-color: black;
+   padding: 0 20px;
+   border-radius: 5px;
+   padding: 5px;
+   font-size: 30px;
+}
+
+.dec,.hex{
+   display: flex;
+   flex-direction: column;
+}
+  .text-display  button{
+   border-radius: 5px;
+    
+  }
+   
