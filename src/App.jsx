@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <p>Shreekrishna</p>
+      <h1 style={{textAlign:"center", color:"green"}}>RGB Color Mixer</h1>
       <Color/>
     </>
   )

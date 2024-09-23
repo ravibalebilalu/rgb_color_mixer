@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useCallback } from 'react'
 import './color.css'
 
 const Color = () => {
@@ -7,7 +7,10 @@ const Color = () => {
     const [green,setGreen]  = useState("0")
     const [blue,setBlue]  = useState("0")
     const [decimal,setDecimal] = useState("rgb(0,0,0)")
-    const [hexaDicimal,setHexaDecimal] = useState("#000000")
+    const [hexaDecimal,setHexaDecimal] = useState("#000000")
+    const color_code_ref = useState("")
+    const [hexbg,sethexbg] = useState("")
+    const [decbg,setdecbg] = useState("")
 
 
  const decimalMixer = ()=>{
@@ -19,14 +22,23 @@ const Color = () => {
  
  useEffect(() => {
      setDecimal(decimalMixer())
-     setHexaDecimal(hexMixer())
-      
-     
-    
- 
-   
+     setHexaDecimal(hexMixer())  
  }, [red,green,blue])
  
+ const copyColorCodeDec = useCallback(()=>{
+    color_code_ref.current?.select()
+    window.navigator.clipboard.writeText(decimal)
+    setdecbg("#500")
+    sethexbg("")
+ },[decimal])
+
+
+ const copyCodeHexadecimal = useCallback(()=>{
+    color_code_ref.current?.select()
+    window.navigator.clipboard.writeText(hexaDecimal)
+    sethexbg("#500")
+    setdecbg("")
+ },[hexaDecimal])
 
   return (
     <div className='container'>
@@ -34,7 +46,7 @@ const Color = () => {
   
     <div className='input-form'>
         <form >
-        
+        <p className='red'>Red : <span style={{color:"white"}}>{red}</span></p>
             <input type="range" 
             name='red' 
             min={0}
@@ -43,6 +55,7 @@ const Color = () => {
             onChange={(e)=>{
                 setRed(e.target.value)}}
                 list='cvalues'
+                
             />
             <datalist id='cvalues'>
                 <option value="0" label="0">00</option>
@@ -69,6 +82,7 @@ const Color = () => {
         </form>
 
         <form >
+            <p className='green'>Green :<span style={{color:"white"}}>{green}</span></p>
             <input type="range" 
             name='green' 
             min={0}
@@ -103,6 +117,7 @@ const Color = () => {
         </form>
 
         <form >
+            <p className='blue'>Blue : <span style={{color:"white"}}>{blue}</span></p>
             <input type="range" 
             name='blue' 
             min={0}
@@ -138,12 +153,13 @@ const Color = () => {
     <div className="display" style={ {background:decimal }}>
         <div className='text-display'>
             <div className="dec">
-                <p>RGB Decimal :  {decimal}</p>
-                <button>Copy</button>
+                <p >RGB Decimal :  <span  style={{background:decbg}}>{decimal}</span></p>
+               
+                <button onClick={copyColorCodeDec}>Copy</button>
             </div>
             <div className="hex">
-                <p>RGB Hexadicimal :{hexaDicimal} </p>
-                <button>Copy</button>
+                <p >RGB Hexadicimal : <span style={{background:hexbg}}>{hexaDecimal}</span> </p>
+                <button  onClick={copyCodeHexadecimal}>Copy</button>
             </div>
         </div>
 
